@@ -7,7 +7,7 @@ import Player from '../model/player.js';
 
 const Router = Express.Router();
 
-Router.post('/login:name', (request, response) =>
+Router.post('/login', (request, response) =>
 {
     let resp = new Response();
 
@@ -21,6 +21,17 @@ Router.post('/login:name', (request, response) =>
     resp.ok();
 
     response.send(resps.serialize());
+});
+
+
+Router.post('/leave', (request, response) =>
+{
+    let data = request.body // nick: , team: 
+});
+
+Router.post('/stats', (request, response) =>
+{
+    let data = request.body // nick: , team: 
 });
 
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
