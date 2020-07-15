@@ -60,7 +60,10 @@ Copyright (c) 2018. Scott Henshaw, Kibble Online Inc. All Rights Reserved.
         }
 
         login(loginData){
-            this.setName( loginData.nickname );
+            let playerName = {
+                name: loginData.nickname
+            }
+            this.setName( playerName );
             this.setRole( loginData.currentrole );
 
             this.$router.push("/" + loginData.currentrole);

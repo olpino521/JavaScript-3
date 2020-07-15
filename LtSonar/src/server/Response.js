@@ -21,7 +21,7 @@ export default class Response {
     // Serialize the string 
     serialize() {
 
-        return JSON.stringify( this ); 
+        return JSON.stringify( this.payload ); 
     }
 
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

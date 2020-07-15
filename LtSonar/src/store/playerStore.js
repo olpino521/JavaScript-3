@@ -11,7 +11,6 @@ import Axios from 'axios'
 
 // import User from '@/model/user' // import POJS model objects
 import Player from '@/model/player'
-import { response } from 'express';
 
 const ERROR_OK = 0;
 const ERROR_NAME_IN_USE = 100;
@@ -29,13 +28,12 @@ export default {
     // called to do things to the state via ajax and mutations
     actions: {
 
-        setName({ commit }, name) {
-            Axios.post('/api/player/login', name)
+        setName({ commit }, payload) {
+            Axios.post('http://localhost:3000/api/player/login', payload)
                 .then(response => response.data)
                 .then(data => (data.error ? error => { throw (error) } : data.payload))
                 .then(responseData => {
-                    console.log(responseData);
-                    commit('SET_NAME', name);
+                    commit('SET_NAME', payload.name);
                 })
                 .catch(error => {
                     console.log(error);

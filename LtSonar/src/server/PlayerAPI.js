@@ -14,13 +14,13 @@ Router.post('/login', (request, response) =>
     let value = request.body.name;
 
     let player = new Player();
-
+    player.name = value
     //Push player to team
 
     resp.payload = player;
     resp.ok();
 
-    response.send(resps.serialize());
+    response.send(resp.serialize());
 });
 
 
