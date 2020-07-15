@@ -2,8 +2,9 @@
 //Server stuff to do
 
 'use strict';
+import Express from 'express'
 
-const Express = require('express')
+import PlayerAPI from './PlayerAPI'
 
 const CORS = require('cors')
 const Path = require('path')
@@ -11,8 +12,6 @@ const HTTP = require('http')
 const FileSystem = require('fs')
 
 //const Result = require('../lib/result')
-
-const lobby = require('./PlayerAPI')
 
 const PORT = 3000;
 

@@ -34,15 +34,17 @@ export default {
                 .then(response => response.data)
                 .then(data => (data.error ? error => { throw (error) } : data.payload))
                 .then(responseData => {
+                    console.log(responseData);
                     commit('SET_NAME', name);
                 })
                 .catch(error => {
+                    console.log(error);
                     commit('SET_NAME_ERROR', ERROR_NAME_IN_USE);
                 });
         },
 
-        clearError({commit}){ commit('SET_NAME_ERROR', ERROR_OK)},
-        addMessage({commit}, newMsg = ""){ commit('ADD_MSG', msg)},
+        // clearError({commit}){ commit('SET_NAME_ERROR', ERROR_OK)},
+        // addMessage({commit}, newMsg = ""){ commit('ADD_MSG', msg)},
         setRole({ commit }, role) {
             commit('SET_ROLE', role);
         }
@@ -51,6 +53,7 @@ export default {
     // PRIVATE: caled by actions to modify the state to prevent deadlock
     mutations: {
         SET_NAME: (state, name) => { state.player.name = name },
+        SET_NAME_ERROR: (state, name) => { state.player.name = name },
         SET_ROLE: (state, role) => { state.player.role = role },
     },
 

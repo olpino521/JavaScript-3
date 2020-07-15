@@ -3,19 +3,25 @@
 
 export default class Response {
 
-    constructor() {
+    constructor (error = -1, errorMsg = "Unknown Error", payload = {}) {
         this.path = require('path')
         this.fs = require('fs')
+        this.error = error;
+        this.errorMsg = errorMsg;
+        this.payload = payload;
     }
 
-    ok()
-    {
 
+    ok() {
+        this.error = 0;
+        this.errorMsg = "";
+        return this;
     }
 
-    serialize()
-    {
-        
+    // Serialize the string 
+    serialize() {
+
+        return JSON.stringify( this ); 
     }
 
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
