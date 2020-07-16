@@ -14,6 +14,7 @@ import Player from '@/model/player'
 
 const ERROR_OK = 0;
 const ERROR_NAME_IN_USE = 100;
+const ERROR_ROLE_IN_USE = 101;
 
 export default {
     // PRIVATE: model state of the application, a bunch of POJS objects
@@ -28,12 +29,12 @@ export default {
     // called to do things to the state via ajax and mutations
     actions: {
 
-        setName({ commit }, payload) {
-            Axios.post('http://localhost:3000/api/player/login', payload)
+        setName({ commit }, name) {
+            Axios.post('http://localhost:3000/api/player/login', name)
                 .then(response => response.data)
                 .then(data => (data.error ? error => { throw (error) } : data.payload))
                 .then(responseData => {
-                    commit('SET_NAME', payload.name);
+                    commit('SET_NAME', name);
                 })
                 .catch(error => {
                     console.log(error);
@@ -44,7 +45,17 @@ export default {
         // clearError({commit}){ commit('SET_NAME_ERROR', ERROR_OK)},
         // addMessage({commit}, newMsg = ""){ commit('ADD_MSG', msg)},
         setRole({ commit }, role) {
-            commit('SET_ROLE', role);
+                Axios.post('http://localhost:3000/api/player/login', role)
+                    .then(response => response.data)
+                    .then(data => (data.error ? error => { throw (error) } : data.payload))
+                    .then(responseData => {
+                        commit('SET_ROLE', role);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        commit('SET_ROLE_ERROR', ERROR_ROLE_IN_USE);
+                    });
+            
         }
     },
 
@@ -52,6 +63,7 @@ export default {
     mutations: {
         SET_NAME: (state, name) => { state.player.name = name },
         SET_NAME_ERROR: (state, name) => { state.player.name = name },
+        SET_ROLE_ERROR: (state, role) => { state.player.role = role },
         SET_ROLE: (state, role) => { state.player.role = role },
     },
 
