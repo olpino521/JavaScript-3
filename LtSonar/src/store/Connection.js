@@ -26,20 +26,22 @@ export default class Connection {
         this.dataStore = firebase.firestore();
     }
 
-    post(edge, data){
+    get(collectionType, data){
 
-        let collecttionType = "players";
-
-        return new Promise((resolve, reject) => {
-            let collection = this.dataStore.data.collection(collecttionType);
+        return new Promise( async (resolve, reject) => {
+            let collection = this.dataStore.data.collection(collectionType);
             let query = collection.where("name", "==", data.name);
-            query.get()
-                .then( resultList => {
-                    resultList.docs.forEach(element => {
-                        
-                    });
-                })
-                .catch(error => reject(error));
+            let docRef = query.get().catch(error => reject(error));
+            resolve(docRef);
+        });
+    }
+
+    post(collectionType, data){
+
+        return new Promise( async (resolve, reject) => {
+            let collection = this.dataStore.data.collection(collectionType);
+            const docRef = await collection.doc('game1').set(data).catch(error => reject(error));
+            resolve(docRef);
         });
     }
 }

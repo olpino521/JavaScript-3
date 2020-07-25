@@ -33,7 +33,7 @@ export default {
     actions: {
 
         setName({ commit }, name) {
-            data.post('http://localhost:3000/api/player/login', name)
+            data.post('players', name)
                 .then(response => response.data)
                 .then(data => (data.error ? error => { throw (error) } : data.payload))
                 .then(responseData => {
@@ -47,7 +47,7 @@ export default {
 
         // clearError({commit}){ commit('SET_NAME_ERROR', ERROR_OK)},
         // addMessage({commit}, newMsg = ""){ commit('ADD_MSG', msg)},
-        setRole({ commit }, role) {
+/*         setRole({ commit }, role) {
                 data.post('http://localhost:3000/api/player/login', role)
                     .then(response => response.data)
                     .then(data => (data.error ? error => { throw (error) } : data.payload))
@@ -59,15 +59,15 @@ export default {
                         commit('SET_ROLE_ERROR', ERROR_ROLE_IN_USE);
                     });
             
-        }
+        } */
     },
 
     // PRIVATE: caled by actions to modify the state to prevent deadlock
     mutations: {
         SET_NAME: (state, name) => { state.player.name = name },
         SET_NAME_ERROR: (state, name) => { state.player.name = name },
-        SET_ROLE_ERROR: (state, role) => { state.player.role = role },
-        SET_ROLE: (state, role) => { state.player.role = role },
+/*         SET_ROLE_ERROR: (state, role) => { state.player.role = role },
+        SET_ROLE: (state, role) => { state.player.role = role }, */
     },
 
     // PUBLIC: injected into components
