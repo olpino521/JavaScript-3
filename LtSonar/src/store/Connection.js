@@ -1,7 +1,9 @@
 /* Copyright (C) 2020 Alejandro Lopez, All Rights Reserved */
 'user strict';
 
-import * as admin from 'firebase-admin'
+import * as firebase from 'firebase/app'
+import "firebase/auth";
+import "firebase/firestore";
 
 export default class Connection {
 
@@ -19,9 +21,9 @@ export default class Connection {
 
         };
 
-        admin.initializeApp(config);
+        firebase.initializeApp(config);
 
-        this.dataStore = admin.firestore();
+        this.dataStore = firebase.firestore();
     }
 
     post(edge, data){

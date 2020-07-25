@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "client": "vue-cli-service --port 4000 serve",
-    "server": "nodemon -r esm --inspect src/server/server.js",
+    "server": "nodemon -r --inspect src/server/server.js",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -12,10 +12,10 @@
     "axios": "^0.19.2",
     "core-js": "^3.4.3",
     "cors": "^2.8.5",
-    "esm": "^3.2.25",
     "express": "^4.17.1",
     "firebase": "^7.16.0",
     "firebase-admin": "^9.0.0",
+    "firebase-app": "0.0.1",
     "fs": "0.0.1-security",
     "http": "0.0.1-security",
     "nodemon": "^2.0.4",
