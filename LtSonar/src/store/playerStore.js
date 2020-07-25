@@ -11,10 +11,13 @@ import Axios from 'axios'
 
 // import User from '@/model/user' // import POJS model objects
 import Player from '@/model/player'
+import Connection from './Connection';
 
 const ERROR_OK = 0;
 const ERROR_NAME_IN_USE = 100;
 const ERROR_ROLE_IN_USE = 101;
+
+const data = new Connection();
 
 export default {
     // PRIVATE: model state of the application, a bunch of POJS objects
@@ -30,7 +33,7 @@ export default {
     actions: {
 
         setName({ commit }, name) {
-            Axios.post('http://localhost:3000/api/player/login', name)
+            data.post('http://localhost:3000/api/player/login', name)
                 .then(response => response.data)
                 .then(data => (data.error ? error => { throw (error) } : data.payload))
                 .then(responseData => {
@@ -45,7 +48,7 @@ export default {
         // clearError({commit}){ commit('SET_NAME_ERROR', ERROR_OK)},
         // addMessage({commit}, newMsg = ""){ commit('ADD_MSG', msg)},
         setRole({ commit }, role) {
-                Axios.post('http://localhost:3000/api/player/login', role)
+                data.post('http://localhost:3000/api/player/login', role)
                     .then(response => response.data)
                     .then(data => (data.error ? error => { throw (error) } : data.payload))
                     .then(responseData => {

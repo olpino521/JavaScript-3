@@ -14,7 +14,7 @@ export const ROLE = {
 
 export default class Player{
 
-    constructor( name, role = ROLE.UNKWOWN, teamId ) {
+    constructor( name, role = ROLE.UNKWOWN, teamId = TEAM.A ) {
         this.name = name;
         this.role = role;
         this.teamId = teamId;
